@@ -89,6 +89,7 @@ module Fog
         end
 
         def public=(new_public)
+					puts "\n\nnew_public is #{new_public}\n\n"
           if new_public
             @acl = 'public-read'
           else
@@ -125,6 +126,8 @@ module Fog
           options.merge!(metadata)
           options['x-amz-storage-class'] = storage_class if storage_class
           options['x-amz-server-side-encryption'] = encryption if encryption
+
+					puts "\n\nacl is #{@acl} and options are: #{options.inspect}\n\n"
 
           if multipart_chunk_size && body.respond_to?(:read)
             data = multipart_save(options)
